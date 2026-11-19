@@ -1,0 +1,42 @@
+{
+  "name": "clownfish",
+  "version": "0.1.0",
+  "description": "Statically map service-to-service calls (HTTP, WebSocket, SQS/SNS/EventBridge/Lambda) and their terminal datastores across a folder of Node.js services, and explore them in a zoomable left-to-right flow viewer.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "clownfish": "bin/clownfish.js"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "workspaces": [
+    "viewer"
+  ],
+  "scripts": {
+    "scan": "node src/cli/index.ts scan",
+    "serve": "node src/cli/index.ts serve",
+    "build:viewer": "npm run build -w viewer",
+    "dev:viewer": "npm run dev -w viewer",
+    "test": "node --test 'test/**/*.test.ts'",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@babel/parser": "^8.1.2",
+    "@babel/traverse": "^8.1.2",
+    "@babel/types": "^8.1.2",
+    "commander": "^15.1.0",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "fast-glob": "^3.3.3",
+    "fast-xml-parser": "^5.12.1",
+    "node-sql-parser": "^5.4.0",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/babel__traverse": "^7.28.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}

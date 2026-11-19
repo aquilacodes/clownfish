@@ -1,0 +1,1 @@
+{ "name": "users-service", "dependencies": { "koa": "^2", "@koa/router": "^12", "mongoose": "^8", "zod": "^3", "redis": "^4" } }

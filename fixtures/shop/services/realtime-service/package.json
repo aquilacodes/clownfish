@@ -1,0 +1,1 @@
+{ "name": "realtime-service", "dependencies": { "socket.io": "^4", "ws": "^8", "@elastic/elasticsearch": "^8", "@prisma/client": "^5" } }

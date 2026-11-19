@@ -1,0 +1,1 @@
+{ "name": "inventory-lambda", "dependencies": { "aws-sdk": "^2" } }

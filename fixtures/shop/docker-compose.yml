@@ -1,0 +1,32 @@
+services:
+  gateway:
+    build: ./services/gateway
+    environment:
+      USERS_URL: http://users:3002
+      ORDERS_URL: http://orders-service:3001
+      PORT: "8080"
+    ports: ["8080:8080"]
+  orders-service:
+    build: { context: ./services/orders-service }
+    environment:
+      - ORDER_EVENTS_TOPIC_ARN=arn:aws:sns:us-east-1:000000000000:order-events
+      - EMAIL_QUEUE_URL=https://sqs.us-east-1.amazonaws.com/000000000000/email-jobs
+      - REDIS_URL=redis://redis:6379
+    ports: ["3001:3001"]
+  users:
+    build: ./services/users-service
+    ports: ["3002:3002"]
+  notifications-worker:
+    build: ./services/notifications-worker
+    environment:
+      EMAIL_QUEUE_URL: https://sqs.us-east-1.amazonaws.com/000000000000/email-jobs
+      INVENTORY_FN: inventory-lambda-dev-reserve
+  realtime:
+    build: ./services/realtime-service
+    ports: ["4000:4000"]
+  redis:
+    image: redis:7
+  mongo:
+    image: mongo:7
+  postgres:
+    image: postgres:16
